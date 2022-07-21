@@ -1,6 +1,7 @@
 const express = require('express')
 const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
+const cors = require('cors')
 
 const schema = require('./schema/schema')
 const connectDB = require('./config/db')
@@ -12,6 +13,9 @@ const app = express()
 
 // MongoDB
 connectDB()
+
+// CORS
+app.use(cors())
 
 // GraphQL
 app.use(
