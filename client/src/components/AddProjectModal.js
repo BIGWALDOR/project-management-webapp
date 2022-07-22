@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@apollo/client'
 
 import { GET_CLIENTS } from '../queries/clientQueries'
 import { GET_PROJECTS } from '../queries/projectQueries'
-import { ADD_PROJECT } from '../mutations/projectMutation'
+import { ADD_PROJECT } from '../mutations/projectMutations'
 
 export default function AddProjectModal() {
   const [name, setName] = useState('')
