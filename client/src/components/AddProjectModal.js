@@ -97,7 +97,7 @@ export default function AddProjectModal() {
                     </div>
                     <div className='mb-3'>
                       <label className='form-label'>Description</label>
-                      <input
+                      <textarea
                         type='description'
                         className='form-control'
                         id='description'
