@@ -3,17 +3,19 @@ import { FaTrash } from 'react-icons/fa'
 
 import { DELETE_CLIENT } from '../mutations/clientMutations'
 import { GET_CLIENTS } from '../queries/clientQueries'
+import { GET_PROJECTS } from '../queries/projectQueries'
 
 export default function ClientRow({ client }) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: { id: client.id },
-    update(cache) {
-      const { clients } = cache.readQuery({ query: GET_CLIENTS })
-      cache.writeQuery({
+    refetchQueries: [
+      {
         query: GET_CLIENTS,
-        data: { clients: clients.filter((c) => c.id !== client.id) },
-      })
-    },
+      },
+      {
+        query: GET_PROJECTS,
+      },
+    ],
   })
 
   return (
