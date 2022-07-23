@@ -8,7 +8,6 @@ const connectDB = require('./config/db')
 
 require('dotenv').config()
 
-const port = process.env.PORT || 4000
 const app = express()
 
 // MongoDB
@@ -26,4 +25,17 @@ app.use(
   })
 )
 
-app.listen(port, console.log(`Server running on port ${port}`))
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(express.static('client/build'))
+
+  // Express serve up index.html file if it doesn't recognize route
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
+
+app.listen(process.env.PORT || 4000, '0.0.0.0', () => {
+  console.log('Server is running.')
+})
