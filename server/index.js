@@ -2,7 +2,6 @@ const express = require('express')
 const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
 const cors = require('cors')
-const http = require('http')
 
 const schema = require('./schema/schema')
 const connectDB = require('./config/db')
@@ -37,4 +36,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-http.createServer(onRequest).listen(process.env.PORT || 4000)
+app.listen(process.env.PORT || 4000, '0.0.0.0', () => {
+  console.log('Server is running.')
+})
