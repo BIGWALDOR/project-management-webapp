@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && cd server && NODE_ENV=production node index.js  && npm run build",
+    "start": "NODE_ENV=production && npm install && node index.js --prefix server  && npm run build",
     "build": "npm install --prefix client && npm run build --prefix client",
     "dev": "nodemon server/index.js"
   },
