@@ -2,6 +2,7 @@ const express = require('express')
 const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
 const cors = require('cors')
+const http = require('http')
 
 const schema = require('./schema/schema')
 const connectDB = require('./config/db')
@@ -9,7 +10,6 @@ const connectDB = require('./config/db')
 require('dotenv').config()
 
 const app = express()
-PORT = process.env.PORT || 4000
 
 // MongoDB
 connectDB()
@@ -36,3 +36,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
 }
+
+http.createServer(onRequest).listen(process.env.PORT || 4000)
