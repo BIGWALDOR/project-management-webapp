@@ -9,6 +9,7 @@ const connectDB = require('./config/db')
 require('dotenv').config()
 
 const app = express()
+PORT = process.env.PORT || 4000
 
 // MongoDB
 connectDB()
@@ -35,8 +36,3 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
 }
-
-app.listen(
-  process.env.PORT || 4000,
-  console.log(`Server running on port ${process.env.PORT}`)
-)
